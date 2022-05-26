@@ -17,20 +17,11 @@ using cAlgo.API.Internals;
 namespace cAlgo
 {
 
-    // --> Estensioni che rendono il codice più leggibile
     #region Extensions
 
-    /// <summary>
-    /// Estensione che fornisce metodi aggiuntivi per il simbolo
-    /// </summary>
     public static class SymbolExtensions
     {
 
-        /// <summary>
-        /// Converte il numero di pips corrente da digits a double
-        /// </summary>
-        /// <param name="Pips">Il numero di pips nel formato Digits</param>
-        /// <returns></returns>
         public static double DigitsToPips(this Symbol MySymbol, double Pips)
         {
 
@@ -38,11 +29,6 @@ namespace cAlgo
 
         }
 
-        /// <summary>
-        /// Converte il numero di pips corrente da double a digits
-        /// </summary>
-        /// <param name="Pips">Il numero di pips nel formato Double (2)</param>
-        /// <returns></returns>
         public static double PipsToDigits(this Symbol MySymbol, double Pips)
         {
 
@@ -52,24 +38,17 @@ namespace cAlgo
 
     }
 
-    /// <summary>
-    /// Estensione che fornisce metodi aggiuntivi per le Bars
-    /// </summary>
     public static class BarsExtensions
     {
 
-        /// <summary>
-        /// Converte l'indice di una bar partendo dalla data di apertura
-        /// </summary>
-        /// <param name="MyTime">La data e l'ora di apertura della candela</param>
-        /// <returns></returns>
         public static int GetIndexByDate(this Bars MyBars, DateTime MyTime)
         {
 
             for (int i = MyBars.ClosePrices.Count - 1; i >= 0; i--)
             {
 
-                if (MyTime == MyBars.OpenTimes[i]) return i;
+                if (MyTime == MyBars.OpenTimes[i])
+                    return i;
 
             }
 
@@ -238,24 +217,15 @@ namespace cAlgo
 
         #region Identity
 
-        /// <summary>
-        /// Nome del prodotto, identificativo, da modificare con il nome della propria creazione
-        /// </summary>
         public const string NAME = "Trenko";
 
-        /// <summary>
-        /// La versione del prodotto, progressivo, utilie per controllare gli aggiornamenti se viene reso disponibile sul sito ctrader.guru
-        /// </summary>
         public const string VERSION = "1.0.2";
 
         #endregion
 
         #region Params
 
-        /// <summary>
-        /// Identità del prodotto nel contesto di ctrader.guru
-        /// </summary>
-        [Parameter(NAME + " " + VERSION, Group = "Identity", DefaultValue = "https://ctrader.guru/product/trenko/")]
+        [Parameter(NAME + " " + VERSION, Group = "Identity", DefaultValue = "https://www.google.com/search?q=ctrader+guru+trenko")]
         public string ProductInfo { get; set; }
 
         [Parameter("Trenko Box", Group = "Params", DefaultValue = 60)]
@@ -266,29 +236,15 @@ namespace cAlgo
 
         #endregion
 
-        #region Property
-
-        // --> Qui inseriremo variabili e costanti del progetto
-
-        #endregion
-
         #region Indicator Events
 
-        /// <summary>
-        /// Viene generato all'avvio dell'indicatore, si inizializza l'indicatore
-        /// </summary>
         protected override void Initialize()
         {
 
-            // --> Stampo nei log la versione corrente
             Print("{0} : {1}", NAME, VERSION);
 
         }
 
-        /// <summary>
-        /// Generato ad ogni tick, vengono effettuati i calcoli dell'indicatore
-        /// </summary>
-        /// <param name="index">L'indice della candela in elaborazione</param>
         public override void Calculate(int index)
         {
 
@@ -325,12 +281,6 @@ namespace cAlgo
             }
 
         }
-
-        #endregion
-
-        #region Private Methods
-
-        // --> Seguiamo la signature con underscore "_mioMetodo()"
 
         #endregion
 
